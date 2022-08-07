@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('wallets', function (Blueprint $table) {
             $table->id();
-            $table->id('user_id');
+            $table->unsignedBigInteger('userId')->nullable();
             $table->id('wallet_id');
             $table->id('wallet_balance');
             $table->unsignedInteger('walletType');

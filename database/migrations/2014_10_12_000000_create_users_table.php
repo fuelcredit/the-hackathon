@@ -21,7 +21,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('mobileNumber', 15)->unique();
             $table->string('bvn')->nullable();
-            $table->string('password');
+            $table->string('password', 164);
+            $table->string('customer_tier');
+            $table->string('account_number');
+            $table->string('reference')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -28,13 +28,13 @@ return new class extends Migration
                 $table->dateTime('dateCreated')->nullable();
                 $table->string('trans', 20)->nullable();
 
-                $table->index(['userId', 'attendantId', 'merchantId']);
-                $table->foreign('userId')->references('id')
-                    ->on('users')->cascadeOnDelete();
-                $table->foreign('attendantId')->references('id')
-                    ->on('admin_users')->cascadeOnDelete();
-                $table->foreign('merchantId')->references('id')
-                    ->on('merchants')->cascadeOnDelete();
+                // $table->index(['userId', 'attendantId', 'merchantId']);
+                // $table->foreign('userId')->references('id')
+                //     ->on('users')->cascadeOnDelete();
+                // $table->foreign('attendantId')->references('id')
+                //     ->on('admin_users')->cascadeOnDelete();
+                // $table->foreign('merchantId')->references('id')
+                //     ->on('merchants')->cascadeOnDelete();
             }
         );
     }

@@ -33,8 +33,7 @@ return new class extends Migration
                 $table->string('password', 15);
                 $table->text('bankName')->nullable();
                 $table->string('address', 150);
-                $table->unsignedBigInteger('status')
-                    ->default(Merchant::ACCOUNT_ACTIVE);
+                $table->unsignedBigInteger('status');
                 $table->timestamps();
 
                 // $table->foreign('addedBy')->references('id')->on('admin_users');

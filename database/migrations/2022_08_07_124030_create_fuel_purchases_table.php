@@ -21,10 +21,8 @@ return new class extends Migration
                 $table->decimal('purchaseAmount', 10, 2)->default(0.00);
                 $table->string('paymentOTP', 10)->nullable();
                 $table->string('dispenseOTP', 10)->nullable();
-                $table->unsignedInteger('paymentStatus')
-                    ->default(FuelPurchase::STATUS_PENDING);
-                $table->unsignedInteger('status')
-                    ->default(FuelPurchase::STATUS_PENDING);
+                $table->unsignedInteger('paymentStatus');
+                $table->unsignedInteger('status');
                 $table->dateTime('dateCreated')->nullable();
                 $table->string('trans', 20)->nullable();
 

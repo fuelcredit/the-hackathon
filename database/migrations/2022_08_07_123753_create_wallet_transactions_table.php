@@ -18,7 +18,7 @@ return new class extends Migration
                 $table->id();
                 $table->bigInteger('walletId');
                 $table->bigInteger('userId')->nullable();
-                $table->bigInteger('userId')->nullable();
+                $table->bigInteger('merchantId')->nullable();
                 $table->decimal('amount', 10, 2)->default(0.00);
                 $table->string('transactionType', 150);
                 $table->string('description', 50);

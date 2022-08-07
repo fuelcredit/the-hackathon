@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('wallets', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('userId');
+            $table->bigInteger('merchantId');
             $table->bigInteger('wallet_id');
             $table->bigInteger('wallet_balance');
             $table->bigInteger('walletType');

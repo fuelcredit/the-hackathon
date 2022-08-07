@@ -16,13 +16,14 @@ return new class extends Migration
         Schema::create(
             'fuel_purchases', function (Blueprint $table) {
                 $table->id();
-                $table->unsignedBigInteger('userId');
-                $table->unsignedBigInteger('merchantId');
+                $table->bigInteger('userId');
+                $table->bigInteger('merchantId');
                 $table->decimal('purchaseAmount', 10, 2)->default(0.00);
                 $table->string('paymentOTP', 10)->nullable();
                 $table->string('dispenseOTP', 10)->nullable();
-                $table->unsignedInteger('paymentStatus');
-                $table->unsignedInteger('status');
+                $table->string('paymentStatus');
+                $table->string('status');
+                $table->string('trans_ref');
                 $table->dateTime('dateCreated')->nullable();
                 $table->string('trans', 20)->nullable();
 

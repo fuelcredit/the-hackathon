@@ -23,11 +23,9 @@ return new class extends Migration
                 $table->string('dispenseOTP', 10)->nullable();
                 $table->unsignedInteger('paymentStatus')
                     ->default(FuelPurchase::STATUS_PENDING);
-                    ->default(FuelPurchase::STATUS_PENDING);
                 $table->unsignedInteger('status')
                     ->default(FuelPurchase::STATUS_PENDING);
                 $table->dateTime('dateCreated')->nullable();
-                $table->unsignedBigInteger('dispensedTo')->nullable();
                 $table->string('trans', 20)->nullable();
 
                 $table->index(['userId', 'attendantId', 'merchantId']);

@@ -18,7 +18,6 @@ return new class extends Migration
                 $table->id();
                 $table->unsignedBigInteger('walletId');
                 $table->unsignedBigInteger('userId')->nullable();
-                $table->unsignedBigInteger('userId')->nullable();
                 $table->decimal('amount', 10, 2)->default(0.00);
                 $table->string('transactionType', 150);
                 $table->string('description', 50)->nullable();

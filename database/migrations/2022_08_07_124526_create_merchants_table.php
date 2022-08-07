@@ -19,7 +19,7 @@ return new class extends Migration
                 $table->string('merchantName', 100);
                 $table->string('customer_tier');
                 $table->string('reference');
-                $table->string('account_no')->nullable();
+                $table->string('account_no');
                 $table->string('director_bvn');
                 $table->string('tin', 100);
                 $table->string('user_name', 100);
@@ -32,7 +32,6 @@ return new class extends Migration
                 $table->string('phoneNumber', 15)->unique();
                 $table->string('password', 15);
                 $table->text('bankName')->nullable();
-                $table->text('accountName')->nullable();
                 $table->string('address', 150);
                 $table->unsignedBigInteger('status')
                     ->default(Merchant::ACCOUNT_ACTIVE);

@@ -30,7 +30,6 @@ return new class extends Migration
                 $table->string('location', 30);
                 $table->string('email', 150)->unique()->nullable();
                 $table->string('phoneNumber', 15)->unique();
-                $table->string('password', 15);
                 $table->text('bankName')->nullable();
                 $table->string('address', 150);
                 $table->unsignedBigInteger('status');

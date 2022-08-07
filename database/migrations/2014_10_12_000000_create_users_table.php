@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('mobileNumber', 15)->unique();
             $table->string('bvn')->nullable();
             $table->string('password', 164);
-            $table->string('customer_tier');
-            $table->string('account_number');
+            $table->string('customer_tier')->nullable();
+            $table->string('account_number')->nullable();
             $table->string('reference')->nullable();
             $table->rememberToken();
             $table->timestamps();

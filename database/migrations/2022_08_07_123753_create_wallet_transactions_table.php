@@ -17,23 +17,23 @@ return new class extends Migration
             'wallet_transactions', function (Blueprint $table) {
                 $table->id();
                 $table->unsignedBigInteger('walletId');
-                $table->unsignedBigInteger('userId')->nullable();
-                $table->unsignedBigInteger('userId')->nullable();
+                $table->unsignedBigInteger('userId');
+                $table->unsignedBigInteger('merchantId');
                 $table->decimal('amount', 10, 2)->default(0.00);
                 $table->string('transactionType', 150);
-                $table->string('description', 50)->nullable();
-                $table->string('ref', 20)->nullable();
-                $table->string('status', 20)->nullable();
-                $table->string('trans', 20)->nullable();
-                $table->dateTime('transactionDate')->nullable();
+                $table->string('description', 50);
+                $table->string('ref', 20);
+                $table->string('status', 20);
+                $table->string('trans', 20);
+                $table->dateTime('transactionDate');
                 
-                $table->index(['walletId', 'userId']);
-                $table->foreign('walletId')->references('id')
-                    ->on('wallets')->cascadeOnDelete();
-                $table->foreign('userId')->references('id')
-                    ->on('merchants')->cascadeOnDelete();
-                $table->foreign('userId')->references('id')
-                    ->on('admin_users')->cascadeOnDelete();
+                // $table->index(['walletId', 'userId']);
+                // $table->foreign('walletId')->references('id')
+                //     ->on('wallets')->cascadeOnDelete();
+                // $table->foreign('userId')->references('id')
+                //     ->on('merchants')->cascadeOnDelete();
+                // $table->foreign('userId')->references('id')
+                //     ->on('admin_users')->cascadeOnDelete();
             }
         );
     }

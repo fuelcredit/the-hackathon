@@ -32,7 +32,7 @@ return new class extends Migration
                 $table->string('phoneNumber', 15)->unique();
                 $table->text('bankName')->nullable();
                 $table->string('address', 150);
-                $table->unsignedBigInteger('status');
+                $table->string('status')->nullable();
                 $table->timestamps();
 
                 // $table->foreign('addedBy')->references('id')->on('admin_users');

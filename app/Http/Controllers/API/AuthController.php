@@ -14,7 +14,7 @@ class AuthController extends Controller
             'firstName'=> 'required|max:191',
             'lastName'=> 'required|max:191',
             'email'=> 'required|email|max:191|unique:users',
-            'password'=> 'required|confirmed|min:6',
+            'password'=> 'required|confirmed',
             'password_confirmation' => 'required',
             'mobileNumber'=> 'required',
             'bvn'=> 'required',

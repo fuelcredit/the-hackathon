@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create(
             'wallet_transactions', function (Blueprint $table) {
                 $table->id();
-                $table->unsignedBigInteger('walletId');
-                $table->unsignedBigInteger('userId')->nullable();
-                $table->unsignedBigInteger('userId')->nullable();
+                $table->bigInteger('walletId');
+                $table->bigInteger('userId')->nullable();
+                $table->bigInteger('userId')->nullable();
                 $table->decimal('amount', 10, 2)->default(0.00);
                 $table->string('transactionType', 150);
                 $table->string('description', 50);

@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('wallets', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('userId');
-            $table->id('wallet_id');
-            $table->id('wallet_balance');
-            $table->unsignedInteger('walletType');
+            $table->bigInteger('userId');
+            $table->bigInteger('wallet_id');
+            $table->bigInteger('wallet_balance');
+            $table->bigInteger('walletType');
             $table->timestamps();
         });
     }

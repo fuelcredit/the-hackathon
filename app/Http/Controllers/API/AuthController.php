@@ -11,12 +11,12 @@ class AuthController extends Controller
 {
     public function register(Request $request){
         $data = $request->validate([
-            'firstName'=> 'required|string|max:191',
-            'lastName'=> 'required|string|max:191',
-            'email'=> 'required|email|max:191|unique:users,email',
-            'password'=> 'required|string',
-            'mobileNumber'=> 'required|string',
-            'bvn'=> 'required|string',
+            'firstName'=> 'required|max:191',
+            'lastName'=> 'required|max:191',
+            'email'=> 'required|email|max:191|unique:users',
+            'password'=> 'required|confirmed|min:6',
+            'mobileNumber'=> 'required',
+            'bvn'=> 'required',
         ],
         [
             'firstName.required'=> 'First Name is required',
@@ -24,7 +24,7 @@ class AuthController extends Controller
             'email.required'=> 'Email is required',
             'email.unique' => 'Email has already been taken',
             'password.required' => 'Password is required',
-            'password.confirmation' => 'Passwords do not match',
+            'password.confirmed' => 'Passwords do not match',
             'mobileNumber.required' => 'Phone Number is required',
             'bvn.required' => 'BVN is required'
         ]);
@@ -35,6 +35,7 @@ class AuthController extends Controller
             'mobileNumber'=> $data['mobileNumber'],
             'email'=> $data['email'],
             'password'=> Hash::make($data['password']),
+            'bvn' => $data['bvn']
          ]);
          $token =$user->createToken('enairaToken')->plainTextToken;
 

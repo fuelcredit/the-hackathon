@@ -58,9 +58,9 @@ class UserController extends Controller
             'verify'  => false,
         ]);
 
-        $responseBody = json_decode($response->getBody());
+        //$responseBody = json_decode($response->getBody());
         
-        return response($responseBody);
+        return response($response);
     }
 
 

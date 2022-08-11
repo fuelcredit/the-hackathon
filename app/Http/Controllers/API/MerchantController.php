@@ -83,7 +83,78 @@ class MerchantController extends Controller
 
    }
 
-   public function createMerchant() {
+   public function createMerchant(Request $request) {
+    $data = $request->validate([
+        'account_no'=> 'required|max:191',
+        'password'=> 'required',
+        'director_bvn'=> 'required',
+        'nin' => 'required',
+        'user_name' => 'required',
+        'city' => 'required',
+        'state' => 'required',
+        'wallet_category' => 'required'
+    ],
+    [
+        'account_no.required'=> 'First Name is required',
+        'password.required' => 'Password is required',
+        'director_bvn.required' => 'BVN is required',
+        'nin.required' => 'NIN is required',
+        'user_name.required' => 'Username is required',
+        'city.required' => 'City is required',
+        'state.required' => 'State is required',
+        'wallet_category.required' => 'Wallet Category is required'
+    ]);
+
+    $client = new Client();
+    $params = [
+        "channel_code" => "APISNG",
+        "customer_tier" => "2",
+        "reference" => $this->generateRandomString(19),
+        "account_no" => $data['account_no'],
+        "director_bvn" => $data['director_bvn'],
+        "password" => $data['password'],
+        "nin" => $data['nin'],
+        "user_name" => $data['user_name'],
+        "city" => $data['city'],
+        "state" => $data['state'],
+        "wallet_category" => "parent",
+
+    ];
+
+    $headers = [
+        'ClientId' => env('ENAIRA_CLIENT_ID'),
+        'Cache-Control' => 'no-cache'
+    ];
+
+    $url = env('ENAIRA_URL').'/CreateMerchant';
+
+    $response = $client->request('POST', $url, [
+        'json' => $params,
+        'headers' => $headers,
+        'verify'  => false,
+    ]);
+
+    //$responseBody = json_decode($response->getBody()->getContents());
+    //dd($responseBody);
+    // if($responseBody->response_code == 99) {
+    //     $message = $responseBody->response_data;
+    //     return response($message, 403);
+    // }else{
+        
+    //     return response($responseBody, 200);
+    // }
+    
+    return response($response->getBody()->getContents());
 
    }
+
+   public  function generateRandomString($length = 20) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
 }

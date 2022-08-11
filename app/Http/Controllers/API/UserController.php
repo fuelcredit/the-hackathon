@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\User;
+use GuzzleHttp\Client;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\{Request, Response};
 use App\Http\Controllers\UserRoleController;
 use Illuminate\Support\Facades\{Hash, Http};
-use Illuminate\Http\{Request, Response};
-use GuzzleHttp\Client;
 
 class UserController extends Controller
 {

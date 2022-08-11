@@ -56,13 +56,13 @@ class UserController extends Controller
 
         $responseBody = json_decode($response->getBody());
         //dd($responseBody);
-        if($responseBody->response_code == 99) {
-            $message = $responseBody->response_data;
-            return response($message, 403);
-        }else{
+        // if($responseBody->response_code == 99) {
+        //     $message = $responseBody->response_data;
+        //     return response($message, 403);
+        // }else{
             
-            return response($responseBody, 200);
-        }
+        //     return response($responseBody, 200);
+        // }
         
         return response($responseBody);
     }

@@ -19,14 +19,25 @@ class UserController extends Controller
 
     // create e-Naira Consumer
     public function createConsumer(Request $request) {
+        $data = $request->validate([
+            'account_no'=> 'required|max:191',
+            'password'=> 'required',
+            'bvn'=> 'required',
+        ],
+        [
+            'account_no.required'=> 'First Name is required',
+            'password.required' => 'Password is required',
+            'bvn.required' => 'BVN is required'
+        ]);
+
         $client = new Client();
         $params = [
                 "channel_code" => "APISNG",
                 "customer_tier" => "2",
-                "reference" => "NXA34567898FGHJJB1",
-                "account_no" => "0689658501",
-                "bvn" => "22152793496",
-                "password" => "Password10$$",
+                "reference" => $this->generateRandomString(8),
+                "account_no" => $data['account_no'],
+                "bvn" => $data['bvn'],
+                "password" => $data['password'],
                 // "nin" => ""
         ];
 
@@ -44,9 +55,26 @@ class UserController extends Controller
         ]);
 
         $responseBody = json_decode($response->getBody());
-        dd($responseBody);
+        //dd($responseBody);
+        if($responseBody->response_code == 99) {
+            $message = $responseBody->response_data;
+            return response($message, 403);
+        }else{
+            
+            return response($responseBody, 200);
+        }
         
-        return response($responseBody);
+        //return response($responseBody);
+    }
+
+    public  function generateRandomString($length = 20) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 
 

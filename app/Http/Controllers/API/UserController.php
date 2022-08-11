@@ -5,7 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Models\User;
 use App\Models\FuelPurchase;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\UserRoleController;
+use Illuminate\Support\Facades\{Hash, Http};
 use App\Models\Validators\UserValidator;
 use Illuminate\Http\{Request, Response};
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -33,6 +34,38 @@ class UserController extends Controller
             ->paginate(20);
 
         return response()->json($users);
+    }
+
+    // create e-Naira Consumer
+    public function createConsumer(Request $request){
+        $http = Http::post(
+            'https://rgw.k8s.apis.ng/centric-platforms/uat/enaira-user/CreateConsumerV2', [
+                {
+                    "channelCode": "APISNG",
+                    "uid": "22142360969",
+                    "uidType": "BVN",
+                    "reference": "NXG3547585HGTKJHGO",
+                    "title": "Mr",
+                    "firstName": "Ifeanyichukwu",
+                    "middleName": "Gerald",
+                    "lastName": "Mbah",
+                    "userName": "icmbah@cbn.gov.ng",
+                    "phone": "08036349590",
+                    "emailId": "icmbah@cbn.gov.ng",
+                    "postalCode": "900110",
+                    "city": "gwarinpa",
+                    "address": "Lagos Estate, Abuja",
+                    "countryOfResidence": "NG",
+                    "tier": "2",
+                    "accountNumber": "0025592222",
+                    "dateOfBirth": "31/12/1987",
+                    "countryOfBirth": "NG",
+                    "password": "1234567890",
+                    "remarks": "Passed",
+                    "referralCode": "@imbah.01"
+                  }
+            ]
+        )->json();
     }
 
     /**
@@ -198,62 +231,7 @@ class UserController extends Controller
         );
     }
 
-    /**
-     * Update User Transaction PIN
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function updateTransactionPIN()
-    {
-        abort_unless(
-            auth()->user()->tokenCan('user.update.transaction.pin'),
-            Response::HTTP_FORBIDDEN
-        );
-
-        $data = validator(
-            request()->all(), [
-                'pin' => 'required|string|min:4|max:4',
-            ]
-        )->validate();
-
-        $user = auth()->user();
-        $resetTransactionPIN = $data['pin'];
-        $user->transactionPin = $resetTransactionPIN;
-        $user->save();
-
-        return response()->json(
-            [
-                'message' => 'Transaction PIN reset successfully'
-            ]
-        );
-    }
-
-    /**
-     * Get User Info
-     *
-     * @param \App\Models\V1\User $user 
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function getUser(User $user)
-    {
-        abort_unless(
-            auth()->user()->tokenCan('user.info'),
-            Response::HTTP_FORBIDDEN
-        );
-
-        return response()->json(
-            [
-                'firstName' => $user->firstName,
-                'lastName' => $user->lastName,
-                'mobileNumber' => $user->mobileNumber,
-                'nin' => $user->nin,
-                'email' => $user->email,
-                'pin' => $user->transactionPin,
-            ]
-        );
-    }
-
+    
     /**
      * Reset User Password
      *
@@ -317,12 +295,12 @@ class UserController extends Controller
 
         $user = auth()->user();
 
-        abort_unless(
-            $user->userRole !== UserRole::USER_ADMIN 
-            || $user->userRole !== UserRole::USER_SUPPORT,
-            403,
-            'You dont have access to authorized this'
-        );
+        // abort_unless(
+        //     $user->userRole !== UserRole::USER_ADMIN 
+        //     || $user->userRole !== UserRole::USER_SUPPORT,
+        //     403,
+        //     'You dont have access to authorized this'
+        // );
 
         $user = User::query()
             ->select(

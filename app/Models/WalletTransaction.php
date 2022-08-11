@@ -264,4 +264,26 @@ class WalletTransaction extends Model
             ->whereDate('transactionDate', now()->format('Y-m-d'));
     }
 
+    // fund wallet with e-Naira
+    public function fundwallet(Request $request, User $user){
+
+        $http = Http::post(
+            'https://rgw.k8s.apis.ng/centric-platforms/uat/CreateInvoice', [
+                {
+                    "amount": 100,
+                    "narration": "Testing Payment",
+                    "reference": "NXG2638494749493",
+                    "product_code": "001",
+                    "channel_code": "APISNG"
+                }
+            ]
+            );
+            return response()->json(
+                [
+                    'message' => 'Your account has been successfully funded',
+                    'data' => $user->wallet->latestWalletTransaction
+                ]
+            );
+    }
+
 }

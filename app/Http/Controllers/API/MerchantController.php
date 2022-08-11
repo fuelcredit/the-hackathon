@@ -88,6 +88,8 @@ class MerchantController extends Controller
    }
 
    public function createMerchant(Request $request) {
+    
+    $merchant_id = Auth::merchatnt()->id;
     $data = $request->validate([
         'account_no'=> 'required|max:191',
         'password'=> 'required',
@@ -140,13 +142,11 @@ class MerchantController extends Controller
 
     //$responseBody = json_decode($response->getBody()->getContents());
     //dd($responseBody);
-    // if($responseBody->response_code == 99) {
-    //     $message = $responseBody->response_data;
-    //     return response($message, 403);
-    // }else{
-        
-    //     return response($responseBody, 200);
-    // }
+    if($responseBody->response_code == 00) {
+        Merchant::where(['id'=>$merchant_id])->update(['feature_item'=>$feature_item,'status'=>$status, 'category_id'=>$data['category_id'],'product_name'=>$data['product_name'],
+				'product_condition'=>$data['product_condition'], 'description'=>$data['description'],'state'=>$data['state'],'price'=>$data['price'],'lga'=>$data['lga'], 
+                'phone'=>$data['phone']]);
+    }
     
     return response($response->getBody()->getContents());
 

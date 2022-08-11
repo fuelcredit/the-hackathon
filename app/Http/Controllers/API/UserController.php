@@ -18,6 +18,7 @@ class UserController extends Controller
 
     // create e-Naira Consumer
     public function createConsumer(Request $request) {
+        $user_id = Auth::user()->id;
         $data = $request->validate([
             'account_no'=> 'required|max:191',
             'password'=> 'required',
@@ -55,13 +56,11 @@ class UserController extends Controller
 
         //$responseBody = json_decode($response->getBody()->getContents());
         //dd($responseBody);
-        // if($responseBody->response_code == 99) {
-        //     $message = $responseBody->response_data;
-        //     return response($message, 403);
-        // }else{
-            
-        //     return response($responseBody, 200);
-        // }
+        if($responseBody->response_code == 00) {
+            User::where(['id'=>$user_id])->update(['feature_item'=>$feature_item,'status'=>$status, 'category_id'=>$data['category_id'],'product_name'=>$data['product_name'],
+                    'product_condition'=>$data['product_condition'], 'description'=>$data['description'],'state'=>$data['state'],'price'=>$data['price'],'lga'=>$data['lga'], 
+                    'phone'=>$data['phone']]);
+        }
         
         return response($response->getBody()->getContents());
     }

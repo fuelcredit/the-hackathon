@@ -23,7 +23,7 @@ class UserController extends Controller
         $params = [
                 "channel_code" => "APISNG",
                 "customer_tier" => "2",
-                "reference" => "NXG34567898FGHJJB1",
+                "reference" => "NXA34567898FGHJJB1",
                 "account_no" => "0689658501",
                 "bvn" => "22152793496",
                 "password" => "Password10$$",

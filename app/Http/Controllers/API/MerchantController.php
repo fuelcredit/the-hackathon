@@ -36,7 +36,7 @@ class MerchantController extends Controller
         'address.required' => 'Address is required'
     ]);
 
-     $merchant =Merchant::create([
+     $merchant = Merchant::create([
         'merchantName'=> $data['merchantName'],
         'director_bvn'=> $data['director_bvn'],
         'phoneNumber'=> $data['phoneNumber'],
@@ -57,7 +57,25 @@ class MerchantController extends Controller
 
    }
 
-   public function loginMerchant() {
+   public function loginMerchant(Request $request) {
+    $data = $request->validate([
+        'email'=> 'required|email|max:191',
+        'password'=> 'required|string',
+
+    ]);
+    $merchant = Merchant::where('email', $data['email'])->first();
+
+        if(!$merchant || !Hash::check($data['password'], $merchant->password)){
+            return response(['message'=>'InvalidCredential'], 401);
+        }
+        else{
+            $token =$merchant->createToken('enairaTokenLogin')->plainTextToken;
+            $response=[
+                'merchant' => $merchant,
+                'token'=> $token
+            ];
+            return response($response, 200);
+        }
 
    }
 

@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\{AuthController, UserController};
+use App\Http\Controllers\API\{AuthController, UserController, MerchantController};
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +23,8 @@ Route::post('/create-consumer-wallet', [UserController::class, 'createConsumer']
 Route::group(['middleware' => ['auth:sanctum']], function() {    
     Route::post('/logout',   [AuthController::class, 'logout']);
   });
+
+Route::post('/register-merchant', [MerchantController::class, 'registerMerchant']);
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();

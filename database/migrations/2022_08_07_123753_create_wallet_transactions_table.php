@@ -27,13 +27,6 @@ return new class extends Migration
                 $table->string('trans', 20);
                 $table->dateTime('transactionDate');
                 
-                // $table->index(['walletId', 'userId']);
-                // $table->foreign('walletId')->references('id')
-                //     ->on('wallets')->cascadeOnDelete();
-                // $table->foreign('userId')->references('id')
-                //     ->on('merchants')->cascadeOnDelete();
-                // $table->foreign('userId')->references('id')
-                //     ->on('admin_users')->cascadeOnDelete();
             }
         );
     }

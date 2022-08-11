@@ -19,21 +19,10 @@ return new class extends Migration
                 $table->bigInteger('userId');
                 $table->bigInteger('merchantId');
                 $table->decimal('purchaseAmount', 10, 2)->default(0.00);
-                $table->string('paymentOTP', 10)->nullable();
-                $table->string('dispenseOTP', 10)->nullable();
-                $table->string('paymentStatus');
                 $table->string('status');
                 $table->string('trans_ref');
-                $table->dateTime('dateCreated')->nullable();
-                $table->string('trans', 20)->nullable();
+                $table->timestamps();
 
-                // $table->index(['userId', 'attendantId', 'merchantId']);
-                // $table->foreign('userId')->references('id')
-                //     ->on('users')->cascadeOnDelete();
-                // $table->foreign('attendantId')->references('id')
-                //     ->on('admin_users')->cascadeOnDelete();
-                // $table->foreign('merchantId')->references('id')
-                //     ->on('merchants')->cascadeOnDelete();
             }
         );
     }

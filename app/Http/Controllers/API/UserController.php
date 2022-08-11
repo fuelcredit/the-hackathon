@@ -34,7 +34,7 @@ class UserController extends Controller
         $params = [
                 "channel_code" => "APISNG",
                 "customer_tier" => "2",
-                "reference" => $this->generateRandomString(8),
+                "reference" => $this->generateRandomString(19),
                 "account_no" => $data['account_no'],
                 "bvn" => $data['bvn'],
                 "password" => $data['password'],

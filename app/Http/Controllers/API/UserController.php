@@ -54,7 +54,7 @@ class UserController extends Controller
             'verify'  => false,
         ]);
 
-        $responseBody = json_decode($response);
+        $responseBody = json_decode($response->getBody());
         //dd($responseBody);
         // if($responseBody->response_code == 99) {
         //     $message = $responseBody->response_data;

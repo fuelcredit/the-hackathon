@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
 Route::post('/register-merchant', [MerchantController::class, 'registerMerchant']);
 Route::post('/login-merchant', [MerchantController::class, 'loginMerchant']);
+Route::post('/create-merchant', [MerchantController::class, 'createMerchant']);
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();

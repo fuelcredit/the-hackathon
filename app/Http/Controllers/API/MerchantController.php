@@ -79,7 +79,9 @@ class MerchantController extends Controller
 
    }
 
-   public function logoutMerchant() {
+   public function logoutMerchant(Request $request) {
+        auth()->user()->tokens()->delete();
+        return response (['message'=>"logged out successfully"]);
 
    }
 

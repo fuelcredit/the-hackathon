@@ -18,6 +18,8 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 //Route::post('/logout', [AuthController::class, 'logout']);
 
+Route::post('/create-consumer-wallet', [UserController::class, 'createConsumer']);
+
 Route::group(['middleware' => ['auth:sanctum']], function() {    
     Route::post('/logout',   [AuthController::class, 'logout']);
   });

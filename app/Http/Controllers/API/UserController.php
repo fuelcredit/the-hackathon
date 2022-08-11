@@ -8,6 +8,7 @@ use App\Http\Controllers\UserRoleController;
 use Illuminate\Support\Facades\{Hash, Http};
 use Illuminate\Http\{Request, Response};
 use GuzzleHttp\Client;
+use Auth;
 
 class UserController extends Controller
 {
@@ -20,12 +21,12 @@ class UserController extends Controller
     public function createConsumer(Request $request) {
         $user_id = Auth::user()->id;
         $data = $request->validate([
-            'account_no'=> 'required|max:191',
+            'account_no'=> 'required',
             'password'=> 'required',
             'bvn'=> 'required',
         ],
         [
-            'account_no.required'=> 'First Name is required',
+            'account_no.required'=> 'Account Numder is required',
             'password.required' => 'Password is required',
             'bvn.required' => 'BVN is required'
         ]);

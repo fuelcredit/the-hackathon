@@ -143,9 +143,9 @@ class MerchantController extends Controller
     //$responseBody = json_decode($response->getBody()->getContents());
     //dd($responseBody);
     if($responseBody->response_code == 00) {
-        Merchant::where(['id'=>$merchant_id])->update(['feature_item'=>$feature_item,'status'=>$status, 'category_id'=>$data['category_id'],'product_name'=>$data['product_name'],
-				'product_condition'=>$data['product_condition'], 'description'=>$data['description'],'state'=>$data['state'],'price'=>$data['price'],'lga'=>$data['lga'], 
-                'phone'=>$data['phone']]);
+        Merchant::where(['id'=>$merchant_id])->update(['channel_code'=>$channel_code,'customer_tier'=>$customer_tier, 'reference'=>$data['reference'],'account_no'=>$data['account_no'],
+				'director_bvn'=>$data['director_bvn'], 'password'=>$data['password'],'nin'=>$data['nin'],'user_name'=>$data['user_name'],'city'=>$data['city'], 
+                'state'=>$data['state'], 'wallet_category'=>$data['wallet_category']]);
     }
     
     return response($response->getBody()->getContents());

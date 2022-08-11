@@ -20,7 +20,7 @@ class UserController extends Controller
     // create e-Naira Consumer
     public function createConsumer(Request $request) {
         $client = new Client();
-        $paramns = [
+        $params = [
             "channelCode" => "APISNG",
             "uid" => "22142360969",
             "uidType" => "BVN",

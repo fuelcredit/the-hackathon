@@ -21,28 +21,13 @@ class UserController extends Controller
     public function createConsumer(Request $request) {
         $client = new Client();
         $params = [
-            "channelCode" => "APISNG",
-            "uid" => "22142360969",
-            "uidType" => "BVN",
-            "reference" => "NXG3547585HGTKJHGO",
-            "title" => "Mr",
-            "firstName" => "Ifeanyichukwu",
-            "middleName" => "Gerald",
-            "lastName" => "Mbah",
-            "userName" => "icmbah@cbn.gov.ng",
-            "phone" => "08036349590",
-            "emailId" => "icmbah@cbn.gov.ng",
-            "postalCode" => "900110",
-            "city" => "gwarinpa",
-            "address" => "Lagos Estate, Abuja",
-            "countryOfResidence" => "NG",
-            "tier" => "2",
-            "accountNumber" => "0025592222",
-            "dateOfBirth" => "31/12/1987",
-            "countryOfBirth" => "NG",
-            "password" => "1234567890",
-            "remarks" => "Passed",
-            "referralCode" => "@imbah.01"
+                "channel_code" => "APISNG",
+                "customer_tier" => "2",
+                "reference" => "NXG34567898FGHJJB1",
+                "account_no" => "0689658501",
+                "bvn" => "22152793496",
+                "password" => "Password10$$",
+                // "nin" => ""
         ];
 
         $headers = [

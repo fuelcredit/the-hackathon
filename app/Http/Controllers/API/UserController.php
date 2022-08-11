@@ -54,7 +54,7 @@ class UserController extends Controller
             'verify'  => false,
         ]);
 
-        //$responseBody = json_decode($response->getBody());
+        $responseBody = json_decode($response);
         //dd($responseBody);
         // if($responseBody->response_code == 99) {
         //     $message = $responseBody->response_data;
@@ -64,7 +64,7 @@ class UserController extends Controller
         //     return response($responseBody, 200);
         // }
         
-        return response($response);
+        return response($responseBody);
     }
 
     public  function generateRandomString($length = 20) {

@@ -18,15 +18,18 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 //Route::post('/logout', [AuthController::class, 'logout']);
 
-Route::post('/create-consumer-wallet', [UserController::class, 'createConsumer']);
-
 Route::group(['middleware' => ['auth:sanctum']], function() {    
     Route::post('/logout',   [AuthController::class, 'logout']);
+
+    Route::post('/merchant-logout',   [MerchantController::class, 'logoutMerchant']);
+
+    Route::post('/create-merchant', [MerchantController::class, 'createMerchant']);
+    Route::post('/create-consumer-wallet', [UserController::class, 'createConsumer']);
   });
 
 Route::post('/register-merchant', [MerchantController::class, 'registerMerchant']);
 Route::post('/login-merchant', [MerchantController::class, 'loginMerchant']);
-Route::post('/create-merchant', [MerchantController::class, 'createMerchant']);
+
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();

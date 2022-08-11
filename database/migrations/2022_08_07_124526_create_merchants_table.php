@@ -17,19 +17,18 @@ return new class extends Migration
             'merchants', function (Blueprint $table) {
                 $table->id();
                 $table->string('merchantName', 100);
-                $table->string('customer_tier');
-                $table->string('reference');
-                $table->string('account_no');
+                $table->string('customer_tier')->nullable();
+                $table->string('reference')->nullable();
+                $table->string('account_no')->nullable();
                 $table->string('director_bvn');
-                $table->string('tin', 100);
-                $table->string('user_name', 100);
+                $table->string('tin', 100)->nullable();
+                $table->string('user_name', 100)->nullable();
                 $table->string('city', 100);
                 $table->string('state', 100);
-                $table->string('wallet_category', 100);
+                $table->string('wallet_category', 100)->nullable();
                 $table->string('password', 100);
-                $table->string('location', 30);
-                $table->string('email', 150)->unique()->nullable();
-                $table->string('phoneNumber', 15)->unique();
+                $table->string('email', 150)->unique();
+                $table->string('phoneNumber', 15);
                 $table->text('bankName')->nullable();
                 $table->string('address', 150);
                 $table->string('status')->nullable();

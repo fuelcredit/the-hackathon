@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\User;
-use App\Models\FuelPurchase;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UserRoleController;
 use Illuminate\Support\Facades\{Hash, Http};

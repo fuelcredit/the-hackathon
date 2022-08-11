@@ -64,7 +64,7 @@ class UserController extends Controller
             return response($responseBody, 200);
         }
         
-        //return response($responseBody);
+        return response($responseBody);
     }
 
     public  function generateRandomString($length = 20) {

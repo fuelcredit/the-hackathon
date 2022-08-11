@@ -6,7 +6,9 @@ use App\Models\Wallet;
 use App\Models\Merchant;
 use DB;
 use Illuminate\Http\{Request, Response};
+use Illuminate\Support\Facades\{Hash, Http};
 use GuzzleHttp\Client;
+use Auth;
 
 
 class MerchantController extends Controller
@@ -80,7 +82,7 @@ class MerchantController extends Controller
    }
 
    public function logoutMerchant(Request $request) {
-        auth()->user()->tokens()->delete();
+        Auth::merchant()->tokens()->delete();
         return response (['message'=>"logged out successfully"]);
 
    }

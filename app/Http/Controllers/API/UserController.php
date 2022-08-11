@@ -59,7 +59,8 @@ class UserController extends Controller
         ]);
 
         $responseBody = json_decode($response->getBody());
-        dd($responseBody);
+        
+        return response($responseBody);
     }
 
 

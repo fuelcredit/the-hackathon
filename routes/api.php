@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('/create-consumer-wallet', [UserController::class, 'createConsumer']);
 
     Route::post('/fund-wallet', [WalletTransactionController::class, 'fundWallet']);
-    Routee::post('/buy-fuel', [FuelPurchaseController::class, 'buyFuel']);
+    Route::post('/buy-fuel', [FuelPurchaseController::class, 'buyFuel']);
     Route::post('/pay-merchant', [WalletTransactionController::class, 'payMerchant']);
   });
 

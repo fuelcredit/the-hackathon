@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Wallet;
+use App\Models\{Wallet, User};
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Auth;
@@ -58,7 +58,7 @@ class WalletTransactionController extends Controller
 
     }
 
-    public function payMerchant(){
+    public function payMerchant(Request $request){
         $merchant_id = Auth::merchant()->id;
 
         $data = $request->validate([

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Wallet, User};
+use App\Models\{Wallet, User, Merchant};
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Auth;

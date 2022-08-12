@@ -88,7 +88,7 @@ class MerchantController extends Controller
    }
 
    public function createMerchant(Request $request) {
-    
+
     $merchant_id = Auth::merchatnt()->id;
     $data = $request->validate([
         'account_no'=> 'required|max:191',
@@ -140,7 +140,7 @@ class MerchantController extends Controller
         'verify'  => false,
     ]);
 
-    //$responseBody = json_decode($response->getBody()->getContents());
+    $responseBody = json_decode($response->getBody()->getContents());
     //dd($responseBody);
     if($responseBody->response_code == 00) {
         Merchant::where(['id'=>$merchant_id])->update(['channel_code'=>$channel_code,'customer_tier'=>$customer_tier, 'reference'=>$data['reference'],'account_no'=>$data['account_no'],
@@ -153,12 +153,12 @@ class MerchantController extends Controller
    }
 
    public  function generateRandomString($length = 20) {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
-    return $randomString;
-}
 }

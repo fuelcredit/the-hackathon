@@ -56,17 +56,17 @@ class AuthController extends Controller
         ]);
         $user = User::where('email', $data['email'])->first();
 
-            if(!$user || !Hash::check($data['password'], $user->password)){
-                return response(['message'=>'InvalidCredential'], 401);
-            }
-            else{
-                $token =$user->createToken('enairaTokenLogin')->plainTextToken;
-                $response=[
-                    'user' => $user,
-                    'token'=> $token
-                ];
-                return response($response, 200);
-            }
+        if(!$user || !Hash::check($data['password'], $user->password)){
+            return response(['message'=>'InvalidCredential'], 401);
+        }
+        else{
+            $token =$user->createToken('enairaTokenLogin')->plainTextToken;
+            $response=[
+                'user' => $user,
+                'token'=> $token
+            ];
+            return response($response, 200);
+        }
     }
 
     public function logout(){

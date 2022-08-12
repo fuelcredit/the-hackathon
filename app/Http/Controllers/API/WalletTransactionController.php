@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Wallet;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 
 class WalletTransactionController extends Controller
 {
-    public function fundWallet(Request $request, User $user){
+    public function fundWallet(Request $request) {
         $user_id = Auth::user()->id;
+        $user = Auth::user();
 
         $data = $request->validate([
             'amount' => 'required',
@@ -58,7 +59,7 @@ class WalletTransactionController extends Controller
     }
 
     public function payMerchant(){
-        $user_id = Auth::user()->id;
+        $merchant_id = Auth::merchant()->id;
 
         $data = $request->validate([
             'amount'=> 'required',

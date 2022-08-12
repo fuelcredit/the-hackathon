@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\{AuthController, UserController, MerchantController};
+use App\Http\Controllers\API\{AuthController, UserController, MerchantController, WalletTransactionController};
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +25,8 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
     Route::post('/create-merchant', [MerchantController::class, 'createMerchant']);
     Route::post('/create-consumer-wallet', [UserController::class, 'createConsumer']);
+
+    Route::post('/fund-wallet', [WalletTransactionController::class, 'fundWallet']);
   });
 
 Route::post('/register-merchant', [MerchantController::class, 'registerMerchant']);

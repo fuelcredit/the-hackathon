@@ -17,7 +17,7 @@ class AuthController extends Controller
             'password'=> 'required|confirmed',
             'password_confirmation' => 'required',
             'mobileNumber'=> 'required',
-            'bvn'=> 'required',
+            //'bvn'=> 'required',
         ],
         [
             'firstName.required'=> 'First Name is required',
@@ -27,7 +27,7 @@ class AuthController extends Controller
             'password.required' => 'Password is required',
             'password.confirmed' => 'Passwords do not match',
             'mobileNumber.required' => 'Phone Number is required',
-            'bvn.required' => 'BVN is required'
+            //'bvn.required' => 'BVN is required'
         ]);
 
          $user =User::create([
@@ -36,7 +36,7 @@ class AuthController extends Controller
             'mobileNumber'=> $data['mobileNumber'],
             'email'=> $data['email'],
             'password'=> Hash::make($data['password']),
-            'bvn' => $data['bvn']
+            //'bvn' => $data['bvn']
          ]);
          $token =$user->createToken('enairaToken')->plainTextToken;
 

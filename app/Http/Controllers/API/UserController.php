@@ -59,7 +59,7 @@ class UserController extends Controller
         //dd($responseBody);
         if($responseBody->response_code == 00) {
             User::where(['id'=>$user_id])->update(['channel_code'=>$channel_code,'customer_tier'=>$customer_tier, 'reference'=>$data['reference'],'account_no'=>$data['account_no'],
-                    'bvn'=>$data['bvn'], 'password'=>$data['password']]);
+                    'bvn'=>$data['bvn']]);
         }
         
         return response($response->getBody()->getContents());

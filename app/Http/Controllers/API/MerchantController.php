@@ -90,6 +90,7 @@ class MerchantController extends Controller
    public function createMerchant(Request $request) {
 
     $merchant_id = Auth::merchatnt()->id;
+    
     $data = $request->validate([
         'account_no'=> 'required|max:191',
         'password'=> 'required',
